@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} architecture</title>
+    <!-- This link is how Flask links to style sheet -->
+    <link href = "{{url_for('static',filename='style.css')}}" rel="stylesheet"/>
+</head>
+<body>
+    <h1>{{ title }} architecture</h1>
+    <form action = "/Start"></form>
+        <input type = "text" name = "name" placeholder = "Enter the first value">
+        <button type = "submit">Submit</button>
+    </form>
+</body>
+</html>

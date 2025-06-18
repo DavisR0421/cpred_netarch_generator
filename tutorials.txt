@@ -1,0 +1,3 @@
+Using these tutorials to figure this project out:
+flask: https://www.youtube.com/watch?v=jQjjqEjZK58&t=127s
+radio buttons: https://www.youtube.com/watch?v=Jh-4oqh1SF8

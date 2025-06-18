@@ -1,0 +1,164 @@
+/*
+reference: https://rtalsoriangames.com/cyberpunk/
+For best results, use the Orbitron font from Google Fonts.
+Add the .glitch class to your main headings for a cyberpunk “glitch” effect.
+Adjust colors as needed for your branding.
+*/
+
+/* Base styles */
+body {
+    background: #181818;
+    color: #fff;
+    font-family: 'Orbitron', 'Arial Black', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Header */
+header, .site-header {
+    background: #000;
+    border-bottom: 4px solid #ff003c;
+    padding: 2rem 0 1rem 0;
+    text-align: center;
+}
+
+header h1, .site-header h1 {
+    color: #ffe600;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 8px #ff003c, 0 0 2px #ffe600;
+    margin: 0;
+}
+
+/* Navigation */
+nav {
+    background: #181818;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+nav a {
+    color: #ffe600;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+nav a:hover, nav a.active {
+    color: #ff003c;
+    border-bottom: 2px solid #ff003c;
+    background: #222;
+}
+
+/* Main content */
+main, .content {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: rgba(24,24,24,0.95);
+    border-radius: 8px;
+    box-shadow: 0 0 24px #ff003c44;
+    padding: 2rem;
+}
+
+/* Headings */
+h2, h3, h4 {
+    color: #ffe600;
+    text-shadow: 0 0 4px #ff003c;
+    margin-top: 2rem;
+}
+
+/* Buttons */
+button, .btn {
+    background: #ff003c;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 8px #ff003c88;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+button:hover, .btn:hover {
+    background: #ffe600;
+    color: #181818;
+    box-shadow: 0 0 16px #ffe60088;
+}
+
+/* Links */
+a {
+    color: #ffe600;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #ff003c;
+}
+
+/* Misc */
+hr {
+    border: 0;
+    border-top: 2px solid #ff003c;
+    margin: 2rem 0;
+}
+
+code, pre {
+    background: #222;
+    color: #ffe600;
+    padding: 0.2em 0.5em;
+    border-radius: 3px;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+}
+
+/* Optional: Glitch effect for headings */
+.glitch {
+    position: relative;
+    color: #ffe600;
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+.glitch:before, .glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    color: #ff003c;
+    z-index: -1;
+}
+.glitch:before {
+    animation: glitchTop 1s infinite linear alternate-reverse;
+    top: -2px;
+}
+.glitch:after {
+    animation: glitchBot 1s infinite linear alternate-reverse;
+    top: 2px;
+}
+@keyframes glitchTop {
+    0% { left: 0; }
+    20% { left: 2px; }
+    40% { left: -2px; }
+    60% { left: 2px; }
+    80% { left: -1px; }
+    100% { left: 0; }
+}
+@keyframes glitchBot {
+    0% { left: 0; }
+    20% { left: -2px; }
+    40% { left: 2px; }
+    60% { left: -1px; }
+    80% { left: 2px; }
+    100% { left: 0; }
+}

@@ -1,0 +1,8 @@
+<form action = "" method=""post>
+    {{ form.csrf_token}}
+    
+    <div>
+        {{ form.difficulty.label }}
+        <span class = "error">{{ form.difficulty.errors | join("|") }}</span>
+        {{ form.difficulty(class_="no_bullets") }}
+    </div> 
