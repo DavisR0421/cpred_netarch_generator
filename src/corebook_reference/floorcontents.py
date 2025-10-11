@@ -1,0 +1,83 @@
+lobby_contents = {
+    1:['file',6],
+    2:['password',6],
+    3:['password',8],
+    4:['skunk'],
+    5:['wisp'],       
+    6:['killer']
+}
+
+floor_contents = {
+    'basic':{
+        3:['hellhound'],
+        4:['sabertooth'],
+        5:['raven','raven'],
+        6:['hellhound'],
+        7:['wisp'],
+        8:['raven'],
+        9:['password'],
+        10:['file'],
+        11:['control node'],
+        12:['password'],
+        13:['skunk'],
+        14:['asp'],
+        15:['scorpion'],
+        16:['killer','skunk'],
+        17:['wisp','wisp','wisp'],
+        18:['liche']
+    },
+    'standard':{
+            3:['hellhound','hellhound'],
+            4:['hellhound','killer'],
+            5:['skunk','skunk'],
+            6:['sabertooth'],
+            7:['scorpion'],
+            8:['hellhound'],
+            9:['password'],
+            10:['file'],
+            11:['control node'],
+            12:['password'],
+            13:['asp'],
+            14:['killer'],
+            15:['liche'],
+            16:['asp'],
+            17:['raven','raven','raven'],
+            18:['liche','raven']
+        },
+    'uncommon':{
+            3:['kraken'],
+            4:['hellhound','scorpion'],
+            5:['hellhound', 'killer'],
+            6:['raven','raven'],
+            7:['sabertooth'],
+            8:['hellhound'],
+            9:['password'],
+            10:['file'],
+            11:['control node'],
+            12:['password'],
+            13:['killer'],
+            14:['liche'],
+            15:['dragon'],
+            16:['asp','raven'],
+            17:['dragon','wisp'],
+            18:['giant']
+        },
+    'advanced':{
+            3:['hellhound','hellhound','hellhound'],
+            4:['asp','asp'],
+            5:['hellhound','liche'],
+            6:['wisp','wisp','wisp'],
+            7:['hellhound','sabertooth'],
+            8:['kraken'],
+            9:['password'],
+            10:['file'],
+            11:['control node'],
+            12:['password'],
+            13:['giant'],
+            14:['dragon'],
+            15:['killer','scorpion'],
+            16:['kraken'],
+            17:['raven','wisp','hellhound'],
+            18:['dragon','dragon']
+    }
+}
