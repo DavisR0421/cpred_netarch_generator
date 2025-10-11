@@ -49,7 +49,7 @@ def set_difficulty() -> str:
         # print("")
         v_difficulty_rating = str(input(f"> input net architecture difficulty or -jackout\n"\
                                         f"> {INFO_REMINDER}\n"\
-                                        f"> {opts_list}:")).lower()
+                                        f"> {opts_list}: ")).lower()
         # v_difficulty_rating = v_difficulty_rating.lower()
         match v_difficulty_rating:
             case '-jackout':
