@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from src.gm_funcs.netarchgenerator import create_net
+from src.gm_funcs.netarch_generator_main import create_net
 from forms_radiobuttons import NET_Difficulty_Form
 # waitress is a production WSGI server for Python web applications
 # use serve() instead of app.run() to remove the warning about the app being for development use only

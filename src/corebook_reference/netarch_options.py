@@ -1,13 +1,12 @@
 import time
 import sys
 
-# sys.append('../')
 from src.utils.roll import roll
 from src.corebook_reference.difficulty import net_architecture_difficulty, net_architecture_difficulty_fulldesc
 from src.corebook_reference.floorcontents import lobby_contents, floor_contents
 
 
-JACK_OUT_REMINDER = "> input JACKOUT to exit the program"
+JACK_OUT_REMINDER = "> input -net.exitto exit the program"
 INFO_REMINDER = "input '<option>.info' or '-all.info' for more details"
 
 REF_DIFFICULTY = net_architecture_difficulty
@@ -47,7 +46,7 @@ def set_difficulty() -> str:
 
     while v_difficulty_rating not in REF_DIFFICULTY:
         # print("")
-        v_difficulty_rating = str(input(f"> input net architecture difficulty or -jackout\n"\
+        v_difficulty_rating = str(input(f"> input net architecture difficulty or -net.exit\n"\
                                         f"> {INFO_REMINDER}\n"\
                                         f"> {opts_list}: ")).lower()
         # v_difficulty_rating = v_difficulty_rating.lower()
@@ -72,8 +71,8 @@ def set_difficulty() -> str:
     return v_difficulty_rating
 
 def get_difficulty_dv(difficulty):
-    v_diff_dv = REF_DIFFICULTY.get(difficulty).get('dv')
-    v_diff_dv
+    v_diff_dv = REF_DIFFICULTY.get(difficulty).get('pfcn_dv')
+    return v_diff_dv
 
 def set_size(n_oversized_dice:int=0) -> int:
     v_total_floors = roll(3+n_oversized_dice,'d6')
