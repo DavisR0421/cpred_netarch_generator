@@ -182,9 +182,34 @@ class NetArchitecture:
             count += 1
         return current  # returns the node at the specified number of steps backward
 
+    # def display(self):
+    #     current = self.head
+    #     while current:
+    #         print(current.data, end="\n -> ")
+    #         if current.next:
+    #             current = current.next
+    #         elif current.next1:
+    #             current = current.next1
+    #             print("showing branch 1 - will aff functionality to show all branches later")
+    #     print("None")
+
     def display(self):
-        current = self.head
-        while current:
-            print(current.data, end="\n -> ")
-            current = current.next
+        def _dfs(node, visited):
+            if node in visited:
+                return
+            visited.add(node)
+            print(node.data, end="\n -> ")
+            # Traverse all branches if they exist
+            if hasattr(node, 'next') and node.next:
+                _dfs(node.next, visited)
+            if hasattr(node, 'next1') and node.next1:
+                print("showing branch 1")
+                _dfs(node.next1, visited)
+            if hasattr(node, 'next2') and node.next2:
+                print("showing branch 2")
+                _dfs(node.next2, visited)
+            # Add more branches as needed
+
+        visited = set()
+        _dfs(self.head, visited)
         print("None")

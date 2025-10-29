@@ -1,0 +1,50 @@
+Step 0 -> Generate Net Architecture
+
+Step 0.1 -> Generate Netrunner (Object -> has HP, Can perform Net actions)
+Step 0.2 -> Generate Netrunner Cyberdeck (Object -> Can load Hardware and Programs)
+Step 0.3 -> Install Hardware and Programs to Netrunner Cyberdeck (Objects -> Can modify Netrunner action 
+        bonuses and instantiate Black Ice objects in initiative queueue)
+
+Step 0.4 -> Recurse Step 0.3 into 0.2 into 0.1 to generate a netrunner object
+that can perform actions with the correct bonuses
+
+Step 0.5 -> Generate 'Netrun initiative tracker'
+
+Step 1 -> Jack into Net Architecture (Set Current Location to Floor 0)
+Step 2 -> Check floor data
+    2.1 -> If floor data contains "Black Ice", instantiate Black Ice Object with unique ID
+    2.1.1 -> roll netrunner.speed vs Black Ice Object.speed
+        2.1.1a -> If Black Ice wins, Black Ice uses ".effect" function on a target
+    2.1.2 -> Add black Ice to top of 'Netrun initiative tracker'
+
+    ...cont
+
+
+Objects:
+    Netrunner:
+        has to do:
+            - Take damage
+            - Have stats
+            - Move in Net Architecture
+            - Net actions  
+            - Have active Programs
+            - Equip cyberdeck
+            - Start turn
+
+    Cyberdeck:
+        Has to do:
+            - Equip Hardware
+            - equip Programs
+            - Have programs derezzed or deleted from into
+            - Enable program instantiation
+
+    Black Ice:
+        Has to do:
+            - Have unique ID when created (Add black ice object with ID "001" to initiative)
+            - Have HP (rez)
+            - Enter initiative
+            - Take action against a netrunner or program
+    
+    Initiative tracker:
+        Has to do:
+            - activate objects in list in order

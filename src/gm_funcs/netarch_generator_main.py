@@ -23,36 +23,62 @@ WAKEUP_MESSAGE = "\nWake the fuck up, samurai. We have a city to burn.\n"
 python -m src.gm_funcs.netarch_generator_main
 """
 
-def create_net()->NetArchitecture:
+def create_net(netarch_instance=None)->NetArchitecture:
 
-    netarch_difficulty = set_difficulty()
-    netarch_size = set_size()
-    constructed_floors = 0
-    can_branch = True
+    load_safe = False
+    if netarch_instance:
+        while not load_safe:
+            confirm = input(f"\n! WARNING ! Net Architecture [{netarch_instance.get_name()}] is currently active\
+                            \ninitializing a new net architecture will override it and any unsaved changes will be lost\
+                            \n> '-continue' to continue with load\
+                            \n> '-save -c' to save current architecture then continue with load\
+                            \n> '-cancel' to cancel load and return to previous options\
+                            \n> input: ").lower()
+            match confirm:
+                case '-continue':
+                    load_safe = True
+                case '-save -c':
+                    save_net(netarch_instance)
+                    load_safe = True
+                    print(f"\n> continuing with net architecture init")
+                case '-cancel':
+                    print(f"\n> cancelling init")
+                    break    
+                case _:
+                    print("\n> input not recognized")
 
-    retries, max_retries = 0, 10 
-    valid_root = False
+    else:
+        load_safe = True
 
-    while valid_root is False and retries < max_retries:
-        net_architecture = NetArchitecture()
-        while constructed_floors < netarch_size:
-            branchroll = roll()
-            floor_data = populate_floor(constructed_floors, netarch_difficulty)
-            if 2 <= constructed_floors <= (netarch_size-3) and can_branch and branchroll >= 7:
-                net_architecture.append(floor_data,branching=True)
-                constructed_floors += 1
-            elif 2 <= constructed_floors <= (netarch_size-3) and can_branch and branchroll < 7:
-                net_architecture.append(floor_data)
-                constructed_floors += 1
-                can_branch = False
-            else:
-                net_architecture.append(floor_data)
-                constructed_floors += 1
-        retries += 1
-        valid_root = net_architecture.validate_root()
+    if load_safe == True:
+        netarch_difficulty = set_difficulty()
+        netarch_size = set_size()
+        constructed_floors = 0
+        can_branch = True
 
-    print(f"\n> {netarch_difficulty} net architecture created with {netarch_size} floors")
-    return net_architecture
+        retries, max_retries = 0, 10 
+        valid_root = False
+
+        while valid_root is False and retries < max_retries:
+            net_architecture = NetArchitecture()
+            while constructed_floors < netarch_size:
+                branchroll = roll()
+                floor_data = populate_floor(constructed_floors, netarch_difficulty)
+                if 2 <= constructed_floors <= (netarch_size-3) and can_branch and branchroll >= 7:
+                    net_architecture.append(floor_data,branching=True)
+                    constructed_floors += 1
+                elif 2 <= constructed_floors <= (netarch_size-3) and can_branch and branchroll < 7:
+                    net_architecture.append(floor_data)
+                    constructed_floors += 1
+                    can_branch = False
+                else:
+                    net_architecture.append(floor_data)
+                    constructed_floors += 1
+            retries += 1
+            valid_root = net_architecture.validate_root()
+
+        print(f"\n> {netarch_difficulty} net architecture created with {netarch_size} floors")
+        return net_architecture
 
 def save_net(netarch_instance:NetArchitecture):
     archname = netarch_instance.get_name()
@@ -128,6 +154,7 @@ def load_net(netarch_instance:NetArchitecture = None)->NetArchitecture:
                     print(f"\n> continuing with net architecture load")
                 case '-cancel':
                     print(f"\n> cancelling load")
+                    break
                 case _:
                     print("\n> input not recognized")
     else:
@@ -197,13 +224,14 @@ if __name__ == "__main__":
     # print(os.path.abspath(SAVE_DIRECTORY))
     time.sleep(1)
 
-    net_architecture = create_net()
+    net_architecture = None
 
     netrun_active = False
     netrun_floor = None
     available_actions = {
                         'arch': 
                             [
+                                '-init',
                                 '-exit',
                                 '-save',
                                 '-load',
@@ -216,16 +244,25 @@ if __name__ == "__main__":
                             ]
                          }
     
-    while net_architecture:
+    
+
+    SESSION_ACTIVE = True
+    while SESSION_ACTIVE:
         command = input(f"\n> awaiting input ('options -show' for help): ").lower()
         match command:
             case 'options -show':
                 pprint(available_actions)
+            case 'arch -init':
+                net_architecture = create_net(net_architecture)
             case 'arch -exit':
                 print(f"\nLater, Choom. good luck out there.\n")
-                net_architecture = None
+                SESSION_ACTIVE = False
             case 'arch -save':
-                save_net(net_architecture)
+                if net_architecture:
+                    save_net(net_architecture)
+                else:
+                    print(f"\nno active net acitecture to save\
+                          \ninitiate a new net architecture or load an existing one")
             case 'arch -load':
                 if net_architecture:
                     net_architecture = load_net(net_architecture)
